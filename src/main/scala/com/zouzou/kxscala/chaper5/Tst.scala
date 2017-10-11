@@ -1,10 +1,8 @@
-package com.zhouyongjin.kxscala.chaper5
+package com.zouzou.kxscala.chaper5
 
 /**
   * Created by zhouyongjin on 2017/2/22.
   */
-package com.zouzou.kxscala.chaper5
-
 import scala.beans.BeanProperty
 
 object Tst{

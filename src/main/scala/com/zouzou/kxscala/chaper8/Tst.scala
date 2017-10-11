@@ -1,4 +1,4 @@
-package com.zhouyongjin.kxscala.chaper8
+package com.zouzou.kxscala.chaper8
 
 /**
   * Created by zhouyongjin on 2017/2/22.
