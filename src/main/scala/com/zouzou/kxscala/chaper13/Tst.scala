@@ -4,7 +4,7 @@ import scala.collection.mutable.HashMap
 import scala.collection.immutable.Map
 
 
-object Tst1 {
+object Tst1{
 
   def main(args: Array[String]): Unit = {
     for ((key, set) <- indexesSet("zhouzouzou")){
@@ -76,5 +76,47 @@ object Tst3{
       rstList = value :: rstList
     }
     rstList.reverse
+  }
+}
+
+object Tst4{
+  def main(args: Array[String]): Unit = {
+    val arr = Array("Tom","Fred","Harry")
+    val map = Map("Tom" -> 3,"Harry" -> 5, "Sony" -> 7)
+    getNumbers(arr, map)
+  }
+
+  def getNumbers(array: Array[String], map: Map[String, Int]): Array[Int] = {
+    array.flatMap(key => {
+      map.get(key)
+    })
+  }
+}
+
+object Tst5{
+  def main(args: Array[String]): Unit = {
+    val array = Array("a", "b", "c")
+    val rst = customMKString(array, "-")
+    println(rst)
+  }
+
+  def customMKString(array: Array[String], string: String): String = {
+    def func(strL: String, strR: String): String = {
+      strL + string + strR
+    }
+    array.reduceLeft(func)
+  }
+}
+
+object Tst6{
+  def main(args: Array[String]): Unit = {
+    val lst = List(1,3,5)
+    val rst1 = (lst:\ List[Int]())(_ :: _)
+    val rst2 = (List[Int]() /: lst)(_ :: _)
+    println(rst1)
+    println(rst2)
+
+    val rst3 = (lst :\ List[Int]())(_ :: _)
+    println(rst3)
   }
 }
