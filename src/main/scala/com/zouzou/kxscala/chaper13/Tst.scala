@@ -16,6 +16,7 @@ object Tst1{
   }
 
   def indexesSet(str: String): Map[Char, Set[Int]]={
+    import scala.collection.mutable.HashMap
     val rstMap = new HashMap[Char, Set[Int]]()
     for(i <- 0 until str.length){
       val ch = str.charAt(i)
@@ -45,6 +46,7 @@ object Tst2{
   }
 
   def  indexesList(str: String): Map[Char, List[Int]] = {
+    import scala.collection.mutable.HashMap
     val rstMap = new HashMap[Char, List[Int]]()
     for (i <- 0 until str.length){
       val ch = str.charAt(i)
