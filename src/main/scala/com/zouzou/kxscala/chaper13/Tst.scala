@@ -1,7 +1,6 @@
 package com.zouzou.kxscala.chaper13
 
-import scala.collection.mutable.HashMap
-import scala.collection.immutable.Map
+import scala.collection.immutable.{HashMap, Map}
 
 
 object Tst1{
@@ -112,11 +111,54 @@ object Tst6{
   def main(args: Array[String]): Unit = {
     val lst = List(1,3,5)
     val rst1 = (lst:\ List[Int]())(_ :: _)
-    val rst2 = (List[Int]() /: lst)(_ :: _)
+    val rst2 = (List[Int]() /: lst)(_ :+ _)
     println(rst1)
     println(rst2)
 
-    val rst3 = (lst :\ List[Int]())(_ :: _)
+    val rst3 = (lst :\ List[Int]())((a, b) => a :: b)
     println(rst3)
+
+    val rst4 = (List[Int]() /: lst)((a, b) => b :: a)
+    println(rst4)
+  }
+}
+
+object Tst7{
+  def main(args: Array[String]): Unit = {
+    val prices = List(5.0, 20.0, 9.95)
+    val quantities = List(10, 2, 1)
+
+    val func = Function.tupled((p: Double, q: Int) => p * q)
+
+    println((prices zip quantities).map(p => p._1 * p._2))
+    println((prices zip quantities).map(Function.tupled(_ * _)))
+    println((prices zip quantities).map(func))
+  }
+}
+
+object Tst8{
+  def main(args: Array[String]): Unit = {
+    val array = Array[Double](1,2,3,4,5,6)
+    val rstArray = array2multiDim(array, 3)
+    rstArray.foreach(ele => println(ele.mkString(",")))
+  }
+
+  def array2multiDim(array: Array[Double], col: Int) = {
+    array.grouped(col).toArray
+  }
+}
+
+object Tst9{
+  def main(args: Array[String]): Unit = {
+    val value = "adfafdassfsadfasf"
+
+    val rst = value.par.aggregate(new HashMap[Char, Int])({
+      (a, b) => {a + (b -> (a.getOrElse(b,0) + 1))}
+      },{
+        (mapA, mapB) => (mapA.keySet ++ mapB.keySet).foldLeft(HashMap[Char, Int]()){
+          (k, j) => k + (j -> (mapA.getOrElse(j, 0) + mapB.getOrElse(j, 0)))
+        }
+      }
+    )
   }
 }
