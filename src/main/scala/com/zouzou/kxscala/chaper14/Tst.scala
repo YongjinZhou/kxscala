@@ -111,3 +111,60 @@ object Tst7{
   }
 }
 
+object Tst8{
+  sealed abstract class BinaryTree
+  case class Leaf(value: Int) extends BinaryTree
+  case class Node(char: Char, tree: BinaryTree*) extends BinaryTree
+
+  def eval(tree: BinaryTree): Int = {
+    tree match {
+      case Node(ch: Char, ele @ _*) => {
+        if (ch == '+')
+          {
+            ele.map(eval).sum
+          }
+        else if (ch == '-')
+        {
+          ele.map(eval).foldLeft(0)(_ - _)
+        }
+        else{
+          ele.map(eval).reduceLeft(_ * _)
+        }
+      }
+      case Leaf(l) => l
+    }
+  }
+
+  def main(args: Array[String]): Unit = {
+    val rst = Node('+' , Node('*',Leaf(3), Leaf(8)), Leaf(2), Node('-' , Leaf(5)))
+    println(eval(rst))
+  }
+}
+
+object Tst9{
+  def main(args: Array[String]): Unit = {
+    val lst = List(Option(1), Option(2), None, Option(-1), Option(3))
+    val rst = lst.map(_.getOrElse(0)).sum
+    println(rst)
+  }
+}
+
+object Tst10{
+  import scala.math.sqrt
+
+  def f(x : Double) = if ( x >= 0) Some(sqrt(x)) else None
+  def g(x : Double) = if ( x != 1) Some( 1 / ( x - 1)) else None
+  val h = compose(f,g)
+
+  def compose(f : (Double => Option[Double]), g : (Double => Option[Double]))
+  : (Double => Option[Double])={
+    (x : Double) =>
+      if (f(x).isEmpty || g(x).isEmpty) None
+      else g(x)
+  }
+
+  def main(args: Array[String]): Unit = {
+    println(h(0))
+  }
+
+}
