@@ -81,9 +81,9 @@ import java.beans.PropertyChangeSupport
 
 trait PropertyChange extends PropertyChangeSupport{}
 
-object Tst_5{
-  val p = new Point() with PropertyChange
-}
+//object Tst_5{
+//  val p = new Point() with PropertyChange
+//}
 
 /**
   * 6、因为java是单继承

@@ -150,7 +150,14 @@ object Tst8{
   }
 }
 
+//...
 object Tst9{
+  def main(args: Array[String]): Unit = {
+
+  }
+}
+
+object Tst10{
   def main(args: Array[String]): Unit = {
     val value = "adfafdassfsadfasf"
 
